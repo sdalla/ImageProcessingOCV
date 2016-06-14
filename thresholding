@@ -1,0 +1,15 @@
+import cv2
+import numpy as np
+
+
+img = cv2.imread('csr.jpg', 1) #img name here
+imgray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+ret, thresh1 = cv2.threshold(imgray, 127, 255, cv2.THRESH_TOZERO_INV)
+blur = cv2.GaussianBlur(imgray,(21,21),0)
+
+cv2.imshow("Original", img)
+cv2.imshow("Thresh1", thresh1)
+cv2.imshow("blur", blur)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()

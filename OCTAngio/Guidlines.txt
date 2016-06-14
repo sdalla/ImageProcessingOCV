@@ -1,0 +1,10 @@
+Great meeting you today. I'm attaching sample images acquired by optical coherence tomography angiography (OCTA); an original image, binarized image, and skeletonized image. We are looking into methods to quantify the vasculature using such images, these are the methods currently used:
+- Percentage of vessel (white) pixels calculated by binarization
+- Total length of vessels calculated using the skeletonized image
+- Fractal dimension and lacunarity of the skeleton
+- Size of the foveal avascular zone (black avascular area in the center) 
+- Number of vascular junctions
+
+Would appreciate you ideas into other potential methods to utilize in this regard.
+
+Also, do you think it would be practical to somehow use the background noise present in the center of the image as a baseline for setting a threshold for creating binary images?

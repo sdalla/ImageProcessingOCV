@@ -1,0 +1,35 @@
+import numpy as np
+import cv2
+
+im = cv2.imread('csr3.jpg') #img name
+height, width, channels = im.shape
+imgr = cv2.cvtColor(im,cv2.COLOR_BGR2GRAY)
+blur = cv2.GaussianBlur(imgr,(25,25),0)
+ret,thresh = cv2.threshold(blur,75,255,0)
+cv2.imshow("thresh", thresh)
+inv = (255-thresh)
+cv2.imshow("inv", inv)
+
+image, contours, hierarchy = cv2.findContours(inv,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+
+s = set()
+ind = 0 
+for i in contours:	
+	for pos in i:
+		[[x,y]] = pos
+		if x == 1 or y == 1 or x == width-1 or y == height-1:
+			s.add(ind)
+	ind = ind + 1
+s = list(s)
+print s
+s = np.asarray(s)
+print s
+contours = np.delete(contours, s, 0)
+
+cv2.imshow("original", im)
+inv = cv2.drawContours(inv, contours, -1, (255,0,0), 5) #5 is the one in example image
+cv2.imshow("contours", inv)
+
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
